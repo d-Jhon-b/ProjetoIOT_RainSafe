@@ -1,0 +1,27 @@
+# RainSafe – Monitoramento Pluvial e Alerta em Tempo Real
+
+## 1. Descrição do Projeto
+[cite_start]O **RainSafe** é um sistema de monitoramento ambiental de baixo custo voltado para a detecção de alta probabilidade de chuva e prevenção de danos por alagamentos[cite: 506, 525]. O projeto utiliza sensores para coletar dados climáticos e transmiti-los via Internet das Coisas (IoT) para uma interface de monitoramento.
+
+[cite_start]Este projeto faz parte da disciplina de **Internet das Coisas e Aplicações** na **FATEC Itaquera**[cite: 4, 10].
+
+## 2. Fundamentação Científica
+O projeto baseia-se no artigo acadêmico:
+* [cite_start]**Título:** "Water Sentinel: Protótipo Embarcado para Alerta de Alagamentos"[cite: 484].
+* [cite_start]**Contribuição:** Validação da arquitetura utilizando ESP32 e Firebase para alertas com latência reduzida (< 5s)[cite: 516, 545, 549, 555].
+
+## 3. Tecnologias Utilizadas
+* [cite_start]**Hardware:** ESP32 (Microcontrolador com Wi-Fi nativo)[cite: 41, 545, 567].
+* [cite_start]**Sensores:** DHT22 (Temperatura e Umidade)[cite: 546, 586].
+* [cite_start]**Protocolo de Comunicação:** MQTT (Message Queuing Telemetry Transport)[cite: 74, 78, 108].
+* [cite_start]**Broker:** `test.mosquitto.org`[cite: 139, 143, 316].
+* **Backend Sugerido:** Node.js com Express e TypeScript.
+* [cite_start]**Banco de Dados:** Firebase Realtime Database[cite: 549, 567, 614].
+
+## 4. Requisitos do Sistema (Hardware)
+* **ESP32** montado em uma **Half Breadboard**.
+* **2 LEDs Verdes:** Sinalizam o estado de espera e intervalo de leitura.
+* **2 LEDs Vermelhos:** Sinalizam o status de envio de dados e alertas de erro.
+
+## 5. Simulação
+[cite_start]O protótipo foi desenvolvido e testado no simulador **Wokwi**[cite: 40].
