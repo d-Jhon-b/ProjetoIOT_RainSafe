@@ -25,3 +25,25 @@ O projeto baseia-se no artigo acadêmico:
 
 ## 5. Simulação
 [cite_start]O protótipo foi desenvolvido e testado no simulador **Wokwi**[cite: 40].
+
+
+
+## 6. Instruções de Execução (PlatformIO CLI)
+* Para que o projeto funcione corretamente, certifique-se de ter a extensão do PlatformIO instalada no VS Code.
+    - Clonar e Instalar
+    - Clone o repositório:
+
+    - **Bash**
+        - ` git clone https://github.com/d-Jhon-b/ProjetoIOT_RainSafe.git `
+        Abra a pasta no VS Code. O PlatformIO baixará as bibliotecas (PubSubClient, DHT sensor library) automaticamente com base no arquivo platformio.ini.
+
+    **Comandos Úteis**
+    # Compilar o projeto: 
+    - Bash
+        - pio run
+        - Fazer upload e abrir o Monitor Serial:
+    - Bash
+        - pio run --target upload --target monitor
+        - Apenas Monitor Serial:
+    - Bash
+        - pio device monitor
