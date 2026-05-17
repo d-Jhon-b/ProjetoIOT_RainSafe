@@ -11,7 +11,7 @@ const char* mqtt_user = "esp32_jhon";
 const char* mqtt_pass = "C@os1945";
 const int mqtt_port = 8883;
 const char* mqtt_topic = "fatec/itaquera/grupo2/rainsafe";
-const char* sensor_id = "ESP32_WOKWI_2"; 
+const char* sensor_id = "ESP32_WOKWI_3"; 
 
 // const char* mqtt_server = "broker.hivemq.com";
 
