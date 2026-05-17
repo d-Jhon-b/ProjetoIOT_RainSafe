@@ -11,7 +11,7 @@ const char* mqtt_user = "esp32_jhon";
 const char* mqtt_pass = "C@os1945";
 const int mqtt_port = 8883;
 const char* mqtt_topic = "fatec/itaquera/grupo2/rainsafe";
-
+const char* sensor_id = "ESP32_WOKWI_2"; 
 
 // const char* mqtt_server = "broker.hivemq.com";
 
@@ -106,8 +106,14 @@ void loop() {
 
     if (!isnan(h) && !isnan(t)) {
       String status_chuva = (h > 80.0) ? "Alta Probabilidade" : "Baixo Risco";
-      String payload = "{\"temp\": " + String(t) + ", \"umid\": " + String(h) + ", \"status\": \"" + status_chuva + "\"}";
-      
+      // String payload = "{\"temp\": " + String(t) + ", \"umid\": " + String(h) + ", \"status\": \"" + status_chuva + "\"}";
+      String payload = "{";
+        payload += "\"sensor_id\": \"" + String(sensor_id) + "\","; // <--- NOVO
+        payload += "\"temp\": " + String(t) + ",";
+        payload += "\"umid\": " + String(h) + ",";
+        payload += "\"status\": \"" + status_chuva + "\"";
+        payload += "}";
+        
       if(client.publish(mqtt_topic, payload.c_str())) {
         Serial.println("Dados enviados ao HiveMQ: " + payload);
         
