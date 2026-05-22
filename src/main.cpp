@@ -4,14 +4,21 @@
 #include "DHT.h"
 #include <WiFiClientSecure.h>
 
+
+//configuração base do projeto para conexão na rede do wokwi
 const char* ssid = "Wokwi-GUEST"; 
 const char* password = "";
+
+
+//**Configuração para contato com broker */
+
 const char* mqtt_server = "cb1fe2a34743476eabeeaed802cf3e1e.s1.eu.hivemq.cloud"; 
 const char* mqtt_user = "esp32_jhon"; 
+//Configuração para contato direto com o cluster criado
 const char* mqtt_pass = "C@os1945";
 const int mqtt_port = 8883;
 const char* mqtt_topic = "fatec/itaquera/grupo2/rainsafe";
-const char* sensor_id = "ESP32_WOKWI_3"; 
+const char* sensor_id = "ESP32_WOKWI_4"; 
 
 // const char* mqtt_server = "broker.hivemq.com";
 
@@ -23,13 +30,20 @@ const char* sensor_id = "ESP32_WOKWI_3";
 #define LED_R2 22
 
 DHT dht(DHTPIN, DHTTYPE);
-// WiFiClient espClient;
-WiFiClientSecure espClient;
+
+/**Dependendo do modelo de conexão, seja uma broker privado de serviço ou um broker publico, recomendado alterar entre
+ * esses dois tipos de declaração
+ */
+// WiFiClient espClient; //Para broker publico
+WiFiClientSecure espClient; //para broker fechado com segurança
+
+
 PubSubClient client(espClient);
 
 
-unsigned long lastMsg = 0;
-bool sendingData = false;
+unsigned long lastMsg = 0; //Temporizador para aplicar a menssagem de envio
+bool sendingData = false; // Status para informar se o sinal foi enviado para o broker
+
 void setup_wifi() {
   delay(10);
   Serial.println("Conectando ao WiFi...");
@@ -65,19 +79,22 @@ void reconnect() {
 }
 
 void setup() {
-  pinMode(LED_V1, OUTPUT); pinMode(LED_V2, OUTPUT);
-  pinMode(LED_R1, OUTPUT); pinMode(LED_R2, OUTPUT);
+  pinMode(LED_V1, OUTPUT); 
+  pinMode(LED_V2, OUTPUT);
+  pinMode(LED_R1, OUTPUT); 
+  pinMode(LED_R2, OUTPUT);
   
   Serial.begin(115200);
   setup_wifi();
   
-  espClient.setInsecure(); 
+  espClient.setInsecure(); //Pode ser comentado para apenas colocar o contato com broker publico
   
   client.setServer(mqtt_server, mqtt_port);
   dht.begin();
 }
 
 void loop() {
+  
   if (!client.connected()) {
     reconnect();
   }
